@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 
 function Student(props){
     return(
@@ -8,9 +9,15 @@ function Student(props){
           </div>
     );
 }
-Student.protoTypes = {
-  name: protoTypes.string,
-  age: protoTypes.number,
-  isStudent: protoTypes.bool,
-}
+Student.propTypes = {
+  name: propTypes.string,
+  age: propTypes.number,
+  isStudent: propTypes.bool,
+};
+ Student.defautProps = {
+    name:"Guest" ,
+    age:0 ,
+    isStudent:"No",
+ };
+
 export default Student 
