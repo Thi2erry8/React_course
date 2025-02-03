@@ -1,9 +1,10 @@
 
 
 function Footer(){
+
        return(
            <footer>
-                  <p>&copy; </p>
+                  <p>&copy; {new Date().getFullYear()} JPP</p>
            </footer>
        );
 }
