@@ -1,12 +1,10 @@
-import Header from "./assets/Header";
-import Footer from "./assets/footer";
+import Student from './Students.jsx'
 
 function App() {
   
   return(
     <>
-      <Header/> 
-      <Footer/>
+      <Student name="Spongebob" age={30} isStudent={true}/> 
     </>
   );
 }
