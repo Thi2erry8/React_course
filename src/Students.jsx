@@ -8,4 +8,9 @@ function Student(props){
           </div>
     );
 }
+Student.protoTypes = {
+  name: protoTypes.string,
+  age: protoTypes.number,
+  isStudent: protoTypes.bool,
+}
 export default Student 
