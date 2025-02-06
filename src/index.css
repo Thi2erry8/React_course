@@ -30,7 +30,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
-
+.fruits_h3{
+  font-size: 3em;
+}
+li{list-style: none;}
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
