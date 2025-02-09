@@ -2,10 +2,13 @@ import Proptypes from 'prop-types'
 
 function button(props){
          
-  const handleClick = () => console.log("OUCH!")  ;
+  const handleClick = (name) => {
+    console.log(name);
+    
+  } ;
   
   return(<>
-             <button onClick={handleClick}>Click me😒</button>
+             <button onClick={() => handleClick("Bro Code")}>Click me😒</button>
          </>);
 
 };
