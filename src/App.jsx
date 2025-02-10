@@ -1,4 +1,4 @@
-import Button from './assets/Button'
+import MyComponent from './assets/MyComponent'
 
 function App() {
   
@@ -6,7 +6,7 @@ function App() {
  
 
     <>
-       <Button></Button>
+       <MyComponent/>
     </>
   );
 }
