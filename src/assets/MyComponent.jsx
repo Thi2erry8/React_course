@@ -1,30 +1,28 @@
 import React, { useState } from "react";
 
 function MyComponent(){
-         
-     const [name, setName] = useState("Guest") ;   
-     const [age, setAge] = useState(0) ;
-      const [isEmployed , setIsEmployed] = useState("false");
+            
+      let [count,setCount] = useState(0) ;
       
-      const updateName = () => {
-         setName("Spongebob");
+      const Add = () => {
+         setCount(count + 1) ;
       }
     
-     const incrementAge = () => {
-         setAge(age + 1);
+     const resetCount = () => {
+      setCount(count = 0) ;
       } 
       
-      const Employement = () =>{
-         setIsEmployed("true")
+      const minus = () =>{
+         setCount(count - 1)  ;
+         
       } ;
   
   return(<>
              <div>
-                   <p>Name: {name}</p>
-                   <button onClick={updateName}></button>
-                   <p>Age: {age}</p>
-                   <button onClick={incrementAge}></button>
-                   <button onClick={Employement}></button>                  
+                   <p>{count}</p>
+                   <button onClick={Add}>+</button>
+                   <button onClick={resetCount}>reset</button>
+                   <button onClick={minus}>-</button>                  
              </div>
          </>);
 
