@@ -1,22 +1,34 @@
 import React, { useState } from "react";
 
 function ColorPicker(){
-    const[color,setColor] = useState("#FFFFFF"); 
-    
-    function handleColorChange(event){
-      setColor(event.target.value);
-    }
+            
+   let [count,setCount] = useState(0) ;
       
-  
-  return(<div className="color-picker-container">
-                 <h1>Color Picker</h1>
-                 <div className="color-display" style={{backgroundColor: color}}>
-                       <p>Selected Color :{color}</p>
-                 </div>
-                 <label>Select a Color:</label>
-                 <input type="color" value={color} onChange={handleColorChange}/>
+   const Add = () => {
+      setCount(c => c + 1) ;
+      setCount(c => c + 1) ;
+      setCount(c => c + 1) ;
+   }
+ 
+  const resetCount = () => {
+   setCount(count = 0) ;
+   } 
+   
+   const minus = () =>{
+      setCount(c => c - 1);
+      setCount(c => c - 1);
+      setCount(c => c - 1);
+      
+   } ;
 
-         </div>);
+return(<>
+          <div>
+                <p>{count}</p>
+                <button onClick={Add}>+</button>
+                <button onClick={resetCount}>reset</button>
+                <button onClick={minus}>-</button>                  
+          </div>
+      </>);
 
 };
 export default ColorPicker
