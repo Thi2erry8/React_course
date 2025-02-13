@@ -2,31 +2,32 @@ import React, { useState } from "react";
 
 function ColorPicker(){
             
-   let [count,setCount] = useState(0) ;
-      
-   const Add = () => {
-      setCount(c => c + 1) ;
-      setCount(c => c + 1) ;
-      setCount(c => c + 1) ;
-   }
- 
-  const resetCount = () => {
-   setCount(count = 0) ;
+   const [car,setcar] = useState({year: 2024,
+                                  make:"Ford",
+                                  model:"Mustang"});
+
+   function handleYearChange(event){
+
+      setcar(c => ({...c, year: event.target.value}));
    } 
    
-   const minus = () =>{
-      setCount(c => c - 1);
-      setCount(c => c - 1);
-      setCount(c => c - 1);
-      
-   } ;
+   function handleMakeChange(event){
+
+      setcar(c => ({...c, make: event.target.value}));
+   }
+
+   function handleModelChange(event){
+
+      setcar(c => ({...c, model: event.target.value}));
+   }
 
 return(<>
           <div>
-                <p>{count}</p>
-                <button onClick={Add}>+</button>
-                <button onClick={resetCount}>reset</button>
-                <button onClick={minus}>-</button>                  
+                <p>Your favorite car is: {car.year} {car.make} {car.model}</p>
+
+                 <input type="number" value={car.year} onChange={handleYearChange}/> 
+                 <input type="text" value={car.make} onChange={handleMakeChange}/>
+                 <input type="text" value={car.model} onChange={handleModelChange}/>
           </div>
       </>);
 
