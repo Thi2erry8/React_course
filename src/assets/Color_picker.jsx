@@ -2,32 +2,34 @@ import React, { useState } from "react";
 
 function ColorPicker(){
             
-   const [car,setcar] = useState({year: 2024,
-                                  make:"Ford",
-                                  model:"Mustang"});
+   const [foods,setFoods] = useState(["Apple","Orange","banana"]);
 
-   function handleYearChange(event){
+   function handleAddFod(){
 
-      setcar(c => ({...c, year: event.target.value}));
-   } 
+        const newFood = document.getElementById("foodInput").value;
+        document.getElementById("foodInput").value ="";
    
-   function handleMakeChange(event){
+        setFoods(f => [...f, newFood]);
+  } 
+   
+   function handleRemoveFood(index){
 
-      setcar(c => ({...c, make: event.target.value}));
+      setFoods(foods.filter((_,i) => i !== index));
    }
 
-   function handleModelChange(event){
-
-      setcar(c => ({...c, model: event.target.value}));
-   }
 
 return(<>
           <div>
-                <p>Your favorite car is: {car.year} {car.make} {car.model}</p>
-
-                 <input type="number" value={car.year} onChange={handleYearChange}/> 
-                 <input type="text" value={car.make} onChange={handleMakeChange}/>
-                 <input type="text" value={car.model} onChange={handleModelChange}/>
+                 <h2>List of Food</h2>
+                 <ul>
+                      {foods.map((food,index) =>
+                        <li key ={index} onClick={() => handleRemoveFood(index)}>
+                             {food}
+                        </li>
+                     )}
+                 </ul>
+                 <input type="text" id="foodInput" placeholder="Enter food name"/>
+                 <button onClick={handleAddFod}>Add Food</button>
           </div>
       </>);
 
