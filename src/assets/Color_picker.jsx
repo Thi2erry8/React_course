@@ -2,48 +2,71 @@ import React, { useState } from "react";
 
 function ColorPicker(){
             
-   const [cars, setCars] = useState([]);
-   const  [carYear, setCarYear] = useState(new Date().getFullYear());
-   const [carMake, setCarMake] = useState("");
-   const [carModel, setCarModel] = useState("");
+   const [tasks,setTask] =  useState(["Eat beackfast","Take a shower","Walk the dog"]);
+   const [newTask,setNewTask] = useState("");
 
-   function handleAddCar(){
-        
-      const newCar = {year: carYear,
-                      make: carMake,
-                      model: carModel}
-      setCars(c => [...c, newCar]);
-  } 
- 
-  function handleRemoveCar(index){
-      setCars(c => c.filter((_,i) => i !== index));  
-  }
-  
-  function handleYearChange(event){
-       setCarYear(event.target.value);
-  }
-  function handleMakeChange(event){
-       setCarMake(event.target.value);    
-  }
-  function handleModelChange(event){
-       setCarModel(event.target.value);       
-  }
-   
+   function handleInputChange(event){
+     setNewTask(event.target.value);
+   }
+
+   function addTask(){
+      if(newTask.trim() !== ""){
+         setTask(t => [...t, newTask]);
+         setNewTask(""); 
+      }
+
+   }
+
+   function deleteTask(index){
+         const updatedTasks = tasks.filter((_,i) => i !== index);
+         setTask(updatedTasks);
+     }
+
+   function moveTaskUp(index){
+       if(index > 0){
+          const updatedTasks = [...tasks];
+          [updatedTasks[index],updatedTasks[index-1]] = [updatedTasks[index-1],updatedTasks[index]];
+          setTask(updatedTasks);
+       }
+   }
+
+   function moveTaskDown(index){
+     if(index > tasks.length - 1){
+        const updatedTasks = [...tasks];
+        [updatedTasks[index],updatedTasks[index+1]] = [updatedTasks[index+1],updatedTasks[index]];
+        setTask(updatedTasks);
+     }
+ }
+
 return(<>
           <div>
-                 <h2>List of Car</h2>
-                 <ul>
-                      {cars.map((car,index) => 
-                        <li key ={index} onClick={() => handleRemoveCar(index)}>
-                             {car.year} {car.make} {car.model}
-                        </li>
-                     )}
-                 </ul>
-                 <input type="number" value={carYear} onChange={handleYearChange} />
-                 <input type="text" value={carMake} onChange={handleMakeChange} />
-                 <input type="text" value={carModel} onChange={handleModelChange} />
-                 <button onClick={handleAddCar}>Add Car</button>
+                 <h2>To-Do-List</h2>
+                 <input 
+                 type="text" 
+                 placeholder="Enter a task" 
+                 value={newTask}
+                 onChange={handleInputChange} />
+                 <button className="add-btn" onClick={addTask}>   
+                 Add
+                 </button>
           </div>
+          <ol>
+               {tasks.map((task,index) => 
+                  <li key={index}>
+                         <span className="text">{task}</span>
+                         <button className="delete-btn" onClick={() => deleteTask(index)}>
+                                   Delete
+                         </button>
+                        
+                         <button className="move-btn" onClick={() => moveTaskUp(index)}>
+                                  Up
+                         </button>
+
+                         <button className="move-btn" onClick={() => moveTaskDown(index)}>
+                                  Down
+                         </button>
+                  </li>)}
+          </ol>
       </>);
 
 };
